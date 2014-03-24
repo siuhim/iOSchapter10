@@ -1,0 +1,487 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BF555A0918E0DDC700791211 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF555A0818E0DDC700791211 /* Foundation.framework */; };
+		BF555A0B18E0DDC700791211 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF555A0A18E0DDC700791211 /* CoreGraphics.framework */; };
+		BF555A0D18E0DDC700791211 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF555A0C18E0DDC700791211 /* UIKit.framework */; };
+		BF555A0F18E0DDC700791211 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF555A0E18E0DDC700791211 /* SpriteKit.framework */; };
+		BF555A1518E0DDC700791211 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF555A1318E0DDC700791211 /* InfoPlist.strings */; };
+		BF555A1718E0DDC700791211 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF555A1618E0DDC700791211 /* main.m */; };
+		BF555A1B18E0DDC700791211 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF555A1A18E0DDC700791211 /* AppDelegate.m */; };
+		BF555A1E18E0DDC700791211 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF555A1C18E0DDC700791211 /* Main.storyboard */; };
+		BF555A2118E0DDC700791211 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF555A2018E0DDC700791211 /* ViewController.m */; };
+		BF555A2418E0DDC700791211 /* MyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BF555A2318E0DDC700791211 /* MyScene.m */; };
+		BF555A2618E0DDC700791211 /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = BF555A2518E0DDC700791211 /* Spaceship.png */; };
+		BF555A2818E0DDC700791211 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF555A2718E0DDC700791211 /* Images.xcassets */; };
+		BF555A2F18E0DDC700791211 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF555A2E18E0DDC700791211 /* XCTest.framework */; };
+		BF555A3018E0DDC700791211 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF555A0818E0DDC700791211 /* Foundation.framework */; };
+		BF555A3118E0DDC700791211 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF555A0C18E0DDC700791211 /* UIKit.framework */; };
+		BF555A3918E0DDC700791211 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF555A3718E0DDC700791211 /* InfoPlist.strings */; };
+		BF555A3B18E0DDC700791211 /* CatNapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BF555A3A18E0DDC700791211 /* CatNapTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BF555A3218E0DDC700791211 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF5559FD18E0DDC700791211 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BF555A0418E0DDC700791211;
+			remoteInfo = CatNap;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BF555A0518E0DDC700791211 /* CatNap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatNap.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF555A0818E0DDC700791211 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		BF555A0A18E0DDC700791211 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		BF555A0C18E0DDC700791211 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		BF555A0E18E0DDC700791211 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		BF555A1218E0DDC700791211 /* CatNap-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CatNap-Info.plist"; sourceTree = "<group>"; };
+		BF555A1418E0DDC700791211 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BF555A1618E0DDC700791211 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BF555A1818E0DDC700791211 /* CatNap-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CatNap-Prefix.pch"; sourceTree = "<group>"; };
+		BF555A1918E0DDC700791211 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		BF555A1A18E0DDC700791211 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		BF555A1D18E0DDC700791211 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BF555A1F18E0DDC700791211 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		BF555A2018E0DDC700791211 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		BF555A2218E0DDC700791211 /* MyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyScene.h; sourceTree = "<group>"; };
+		BF555A2318E0DDC700791211 /* MyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyScene.m; sourceTree = "<group>"; };
+		BF555A2518E0DDC700791211 /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
+		BF555A2718E0DDC700791211 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		BF555A2D18E0DDC700791211 /* CatNapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatNapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF555A2E18E0DDC700791211 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		BF555A3618E0DDC700791211 /* CatNapTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CatNapTests-Info.plist"; sourceTree = "<group>"; };
+		BF555A3818E0DDC700791211 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BF555A3A18E0DDC700791211 /* CatNapTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CatNapTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BF555A0218E0DDC700791211 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF555A0B18E0DDC700791211 /* CoreGraphics.framework in Frameworks */,
+				BF555A0D18E0DDC700791211 /* UIKit.framework in Frameworks */,
+				BF555A0F18E0DDC700791211 /* SpriteKit.framework in Frameworks */,
+				BF555A0918E0DDC700791211 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF555A2A18E0DDC700791211 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF555A2F18E0DDC700791211 /* XCTest.framework in Frameworks */,
+				BF555A3118E0DDC700791211 /* UIKit.framework in Frameworks */,
+				BF555A3018E0DDC700791211 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BF5559FC18E0DDC700791211 = {
+			isa = PBXGroup;
+			children = (
+				BF555A1018E0DDC700791211 /* CatNap */,
+				BF555A3418E0DDC700791211 /* CatNapTests */,
+				BF555A0718E0DDC700791211 /* Frameworks */,
+				BF555A0618E0DDC700791211 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BF555A0618E0DDC700791211 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BF555A0518E0DDC700791211 /* CatNap.app */,
+				BF555A2D18E0DDC700791211 /* CatNapTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BF555A0718E0DDC700791211 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BF555A0818E0DDC700791211 /* Foundation.framework */,
+				BF555A0A18E0DDC700791211 /* CoreGraphics.framework */,
+				BF555A0C18E0DDC700791211 /* UIKit.framework */,
+				BF555A0E18E0DDC700791211 /* SpriteKit.framework */,
+				BF555A2E18E0DDC700791211 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BF555A1018E0DDC700791211 /* CatNap */ = {
+			isa = PBXGroup;
+			children = (
+				BF555A1918E0DDC700791211 /* AppDelegate.h */,
+				BF555A1A18E0DDC700791211 /* AppDelegate.m */,
+				BF555A1C18E0DDC700791211 /* Main.storyboard */,
+				BF555A1F18E0DDC700791211 /* ViewController.h */,
+				BF555A2018E0DDC700791211 /* ViewController.m */,
+				BF555A2218E0DDC700791211 /* MyScene.h */,
+				BF555A2318E0DDC700791211 /* MyScene.m */,
+				BF555A2518E0DDC700791211 /* Spaceship.png */,
+				BF555A2718E0DDC700791211 /* Images.xcassets */,
+				BF555A1118E0DDC700791211 /* Supporting Files */,
+			);
+			path = CatNap;
+			sourceTree = "<group>";
+		};
+		BF555A1118E0DDC700791211 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BF555A1218E0DDC700791211 /* CatNap-Info.plist */,
+				BF555A1318E0DDC700791211 /* InfoPlist.strings */,
+				BF555A1618E0DDC700791211 /* main.m */,
+				BF555A1818E0DDC700791211 /* CatNap-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BF555A3418E0DDC700791211 /* CatNapTests */ = {
+			isa = PBXGroup;
+			children = (
+				BF555A3A18E0DDC700791211 /* CatNapTests.m */,
+				BF555A3518E0DDC700791211 /* Supporting Files */,
+			);
+			path = CatNapTests;
+			sourceTree = "<group>";
+		};
+		BF555A3518E0DDC700791211 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BF555A3618E0DDC700791211 /* CatNapTests-Info.plist */,
+				BF555A3718E0DDC700791211 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BF555A0418E0DDC700791211 /* CatNap */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF555A3E18E0DDC700791211 /* Build configuration list for PBXNativeTarget "CatNap" */;
+			buildPhases = (
+				BF555A0118E0DDC700791211 /* Sources */,
+				BF555A0218E0DDC700791211 /* Frameworks */,
+				BF555A0318E0DDC700791211 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CatNap;
+			productName = CatNap;
+			productReference = BF555A0518E0DDC700791211 /* CatNap.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BF555A2C18E0DDC700791211 /* CatNapTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF555A4118E0DDC700791211 /* Build configuration list for PBXNativeTarget "CatNapTests" */;
+			buildPhases = (
+				BF555A2918E0DDC700791211 /* Sources */,
+				BF555A2A18E0DDC700791211 /* Frameworks */,
+				BF555A2B18E0DDC700791211 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BF555A3318E0DDC700791211 /* PBXTargetDependency */,
+			);
+			name = CatNapTests;
+			productName = CatNapTests;
+			productReference = BF555A2D18E0DDC700791211 /* CatNapTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BF5559FD18E0DDC700791211 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Jimmy Tang";
+				TargetAttributes = {
+					BF555A2C18E0DDC700791211 = {
+						TestTargetID = BF555A0418E0DDC700791211;
+					};
+				};
+			};
+			buildConfigurationList = BF555A0018E0DDC700791211 /* Build configuration list for PBXProject "CatNap" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BF5559FC18E0DDC700791211;
+			productRefGroup = BF555A0618E0DDC700791211 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BF555A0418E0DDC700791211 /* CatNap */,
+				BF555A2C18E0DDC700791211 /* CatNapTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BF555A0318E0DDC700791211 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF555A1518E0DDC700791211 /* InfoPlist.strings in Resources */,
+				BF555A2818E0DDC700791211 /* Images.xcassets in Resources */,
+				BF555A2618E0DDC700791211 /* Spaceship.png in Resources */,
+				BF555A1E18E0DDC700791211 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF555A2B18E0DDC700791211 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF555A3918E0DDC700791211 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BF555A0118E0DDC700791211 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF555A2418E0DDC700791211 /* MyScene.m in Sources */,
+				BF555A2118E0DDC700791211 /* ViewController.m in Sources */,
+				BF555A1B18E0DDC700791211 /* AppDelegate.m in Sources */,
+				BF555A1718E0DDC700791211 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF555A2918E0DDC700791211 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF555A3B18E0DDC700791211 /* CatNapTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BF555A3318E0DDC700791211 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BF555A0418E0DDC700791211 /* CatNap */;
+			targetProxy = BF555A3218E0DDC700791211 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BF555A1318E0DDC700791211 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BF555A1418E0DDC700791211 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		BF555A1C18E0DDC700791211 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BF555A1D18E0DDC700791211 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		BF555A3718E0DDC700791211 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BF555A3818E0DDC700791211 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BF555A3C18E0DDC700791211 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		BF555A3D18E0DDC700791211 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BF555A3F18E0DDC700791211 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CatNap/CatNap-Prefix.pch";
+				INFOPLIST_FILE = "CatNap/CatNap-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		BF555A4018E0DDC700791211 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CatNap/CatNap-Prefix.pch";
+				INFOPLIST_FILE = "CatNap/CatNap-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		BF555A4218E0DDC700791211 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CatNap.app/CatNap";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CatNap/CatNap-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "CatNapTests/CatNapTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		BF555A4318E0DDC700791211 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CatNap.app/CatNap";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CatNap/CatNap-Prefix.pch";
+				INFOPLIST_FILE = "CatNapTests/CatNapTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BF555A0018E0DDC700791211 /* Build configuration list for PBXProject "CatNap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF555A3C18E0DDC700791211 /* Debug */,
+				BF555A3D18E0DDC700791211 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF555A3E18E0DDC700791211 /* Build configuration list for PBXNativeTarget "CatNap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF555A3F18E0DDC700791211 /* Debug */,
+				BF555A4018E0DDC700791211 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		BF555A4118E0DDC700791211 /* Build configuration list for PBXNativeTarget "CatNapTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF555A4218E0DDC700791211 /* Debug */,
+				BF555A4318E0DDC700791211 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BF5559FD18E0DDC700791211 /* Project object */;
+}
