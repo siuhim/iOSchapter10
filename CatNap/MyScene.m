@@ -9,6 +9,7 @@
 #import "MyScene.h"
 #import "SKSpriteNode+DebugDraw.h"
 #import "SKTAudio.h"
+#import "SKTUtils.h"
 
 typedef NS_OPTIONS(uint32_t, CNPhysicsCategory)
 {
@@ -17,6 +18,8 @@ typedef NS_OPTIONS(uint32_t, CNPhysicsCategory)
     CNPhysicsCategoryBed = 1 << 2, // 0100 = 4
     CNPhysicsCategoryEdge = 1 << 3, // 1000 = 8
     CNPhysicsCategoryLabel = 1 << 4, // 10000 = 16
+    CNPhysicsCategorySpring = 1 << 5, // 100000 = 32
+    CNPhysicsCategoryHook = 1 << 6, // 1000000 = 64
 };
 
 @interface MyScene()<SKPhysicsContactDelegate>
@@ -29,6 +32,12 @@ typedef NS_OPTIONS(uint32_t, CNPhysicsCategory)
     SKSpriteNode *_bedNode;
     
     int _currentLevel;
+    
+    BOOL _isHooked;
+    
+    SKSpriteNode *_hookBaseNode;
+    SKSpriteNode *_hookNode;
+    SKSpriteNode *_ropeNode;
 }
 
 - (instancetype)initWithSize:(CGSize)size
@@ -89,7 +98,7 @@ typedef NS_OPTIONS(uint32_t, CNPhysicsCategory)
     
     _catNode.physicsBody.categoryBitMask = CNPhysicsCategoryCat;
     
-    _catNode.physicsBody.contactTestBitMask = CNPhysicsCategoryBed | CNPhysicsCategoryEdge;
+    _catNode.physicsBody.collisionBitMask = CNPhysicsCategoryBlock | CNPhysicsCategoryEdge | CNPhysicsCategorySpring;
     
 }
 
@@ -105,6 +114,13 @@ typedef NS_OPTIONS(uint32_t, CNPhysicsCategory)
     [self addBlocksFromArray:level[@"blocks"]];
     
     [[SKTAudio sharedInstance] playBackgroundMusic:@"bgMusic.mp3"];
+    
+    [self addSpringsFromArray: level[@"springs"]];
+    
+    if (level[@"hookPosition"]) {
+        [self addHookAtPosition:
+         CGPointFromString(level[@"hookPosition"])];
+    }
 }
 
 -(void)addBlocksFromArray:(NSArray*)blocks
@@ -114,12 +130,45 @@ typedef NS_OPTIONS(uint32_t, CNPhysicsCategory)
         
     //2
         
+        if (block[@"tuple"]) {
+            
+            //1
+            CGRect rect1 = CGRectFromString([block[@"tuple"] firstObject]);
+            SKSpriteNode* block1 = [self addBlockWithRect: rect1];
+            block1.physicsBody.friction = 0.8;
+            block1.physicsBody.categoryBitMask =
+            CNPhysicsCategoryBlock;
+            block1.physicsBody.collisionBitMask =
+            CNPhysicsCategoryBlock | CNPhysicsCategoryCat |
+            CNPhysicsCategoryEdge;
+            [_gameNode addChild: block1];
+            
+            //2
+            CGRect rect2 = CGRectFromString([block[@"tuple"] lastObject]);
+            SKSpriteNode* block2 = [self addBlockWithRect: rect2];
+            block2.physicsBody.friction = 0.8;
+            block2.physicsBody.categoryBitMask =
+            CNPhysicsCategoryBlock;
+            block2.physicsBody.collisionBitMask =
+            CNPhysicsCategoryBlock | CNPhysicsCategoryCat |
+            CNPhysicsCategoryEdge;
+            [_gameNode addChild: block2];
+            
+            [self.physicsWorld addJoint: [SKPhysicsJointFixed
+                                          jointWithBodyA: block1.physicsBody
+                                          bodyB: block2.physicsBody
+                                          anchor:CGPointZero]
+             ];
+            
+        } else {
+        
         SKSpriteNode *blockSprite = [self addBlockWithRect:CGRectFromString(block[@"rect"])];
         
         blockSprite.physicsBody.categoryBitMask = CNPhysicsCategoryBlock;
         blockSprite.physicsBody.collisionBitMask = CNPhysicsCategoryBlock | CNPhysicsCategoryCat | CNPhysicsCategoryEdge;
         
         [_gameNode addChild:blockSprite];
+    }
     }
 }
 
@@ -139,6 +188,7 @@ typedef NS_OPTIONS(uint32_t, CNPhysicsCategory)
     //6
     [blockSprite attachDebugRectWithSize:blockSprite.size];
     return blockSprite;
+    
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -152,10 +202,30 @@ typedef NS_OPTIONS(uint32_t, CNPhysicsCategory)
      ^(SKPhysicsBody *body, BOOL *stop) {
          // 3
          if (body.categoryBitMask == CNPhysicsCategoryBlock) {
+             
+             for (SKPhysicsJoint* joint in body.joints) {
+                 [self.physicsWorld removeJoint: joint];
+                 [joint.bodyA.node removeFromParent];
+                 [joint.bodyB.node removeFromParent];
+                 }
+             
              [body.node removeFromParent];
              *stop = YES; // 4
              // 5
              [self runAction:[SKAction playSoundFileNamed:@"pop.mp3" waitForCompletion:NO]];
+         }
+         
+         if (body.categoryBitMask == CNPhysicsCategorySpring) {
+             SKSpriteNode *spring = (SKSpriteNode*)body.node;
+             [body applyImpulse:CGVectorMake(0, 12) atPoint:CGPointMake(spring.size.width/2, spring.size.height)];
+             [body.node runAction:
+              [SKAction sequence:@[[SKAction waitForDuration:1],
+                                   [SKAction removeFromParent]]]];
+             *stop = YES;
+             
+             if (body.categoryBitMask == CNPhysicsCategoryCat && _isHooked) {
+                 [self releaseHook];
+             }
          }
      }];
 }
@@ -170,7 +240,23 @@ typedef NS_OPTIONS(uint32_t, CNPhysicsCategory)
     
     if (collision == (CNPhysicsCategoryCat|CNPhysicsCategoryEdge))
     {
-        [self lose];
+        if (_isHooked==NO) [self lose];
+    }
+    
+    if (collision == (CNPhysicsCategoryHook|CNPhysicsCategoryCat)) {
+        //1
+        _catNode.physicsBody.velocity = CGVectorMake(0, 0);
+        _catNode.physicsBody.angularVelocity = 0;
+        //2
+        SKPhysicsJointFixed *hookJoint =
+        [SKPhysicsJointFixed
+         jointWithBodyA: _hookNode.physicsBody
+         bodyB: _catNode.physicsBody
+         anchor: CGPointMake(_hookNode.position.x,
+                             _hookNode.position.y+_hookNode.size.height/2) ];
+        [self.physicsWorld addJoint:hookJoint];
+        //3
+        _isHooked = YES;
     }
 }
 
@@ -207,6 +293,11 @@ typedef NS_OPTIONS(uint32_t, CNPhysicsCategory)
 
 - (void)lose
 {
+    
+    if (_currentLevel>1) {
+        _currentLevel--;
+    }
+    
     // 1
     _catNode.physicsBody.contactTestBitMask = 0;
     [_catNode setTexture:
@@ -225,6 +316,11 @@ typedef NS_OPTIONS(uint32_t, CNPhysicsCategory)
 
 - (void)win
 {
+    
+    if (_currentLevel<3) {
+        _currentLevel++;
+    }
+    
     // 1
     _catNode.physicsBody=nil;
     
@@ -259,6 +355,81 @@ typedef NS_OPTIONS(uint32_t, CNPhysicsCategory)
     [[SKTAudio sharedInstance] pauseBackgroundMusic];
     [self runAction:[SKAction playSoundFileNamed:@"win.mp3"
                                waitForCompletion:NO]];
+}
+
+- (void)didSimulatePhysics
+{
+    if (_catNode.physicsBody.contactTestBitMask && fabs(_catNode.zRotation) > DegreesToRadians(25)) {
+        [self lose];
+    }
+    
+    CGFloat angle =
+    CGPointToAngle(CGPointSubtract(_hookBaseNode.position,
+                                   _hookNode.position));
+    _ropeNode.zRotation = M_PI + angle;
+}
+
+- (void)addSpringsFromArray:(NSArray *)springs
+{
+    for (NSDictionary *spring in springs) {
+        SKSpriteNode *springSprite = [SKSpriteNode spriteNodeWithImageNamed: @"spring"];
+        springSprite.position = CGPointFromString(spring[@"position"]);
+        springSprite.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:springSprite.size];
+        springSprite.physicsBody.categoryBitMask = CNPhysicsCategorySpring;
+        springSprite.physicsBody.collisionBitMask = CNPhysicsCategoryEdge | CNPhysicsCategoryBlock |
+        CNPhysicsCategoryCat;
+        [springSprite attachDebugRectWithSize: springSprite.size];
+        [_gameNode addChild: springSprite];
+        
+    }
+}
+
+- (void)addHookAtPosition:(CGPoint)hookPosition
+{
+    _hookBaseNode = nil;
+    _hookNode = nil;
+    _ropeNode = nil;
+    _isHooked = NO;
+    
+    _hookBaseNode = [SKSpriteNode spriteNodeWithImageNamed:@"hook_base"];
+    _hookBaseNode.position = CGPointMake(hookPosition.x, hookPosition.y-_hookBaseNode.size.height/2);
+    _hookBaseNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_hookBaseNode.size];
+    [_gameNode addChild:_hookBaseNode];
+    
+    SKPhysicsJointFixed *ceilingFix = [SKPhysicsJointFixed jointWithBodyA:_hookBaseNode.physicsBody bodyB:self.physicsBody anchor:CGPointZero];
+    [self.physicsWorld addJoint:ceilingFix];
+    
+    _ropeNode = [SKSpriteNode spriteNodeWithImageNamed:@"rope"];
+    _ropeNode.anchorPoint = CGPointMake(0, 0.5);
+    _ropeNode.position = _hookBaseNode.position;
+    [_gameNode addChild: _ropeNode];
+    
+    _hookNode = [SKSpriteNode spriteNodeWithImageNamed:@"hook"];
+    
+    _hookNode.position = CGPointMake(hookPosition.x,
+                                     hookPosition.y-63);
+    _hookNode.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius: _hookNode.size.width/2];
+    _hookNode.physicsBody.categoryBitMask = CNPhysicsCategoryHook;
+    _hookNode.physicsBody.contactTestBitMask = CNPhysicsCategoryCat;
+    _hookNode.physicsBody.collisionBitMask = kNilOptions;
+    [_gameNode addChild: _hookNode];
+    
+    SKPhysicsJointSpring *ropeJoint = [SKPhysicsJointSpring
+                                       jointWithBodyA:_hookBaseNode.physicsBody
+                                       bodyB:_hookNode.physicsBody
+                                       anchorA:_hookBaseNode.position
+                                       anchorB: CGPointMake(_hookNode.position.x,
+                                                            _hookNode.position.y+_hookNode.size.height/2)];
+    [self.physicsWorld addJoint:ropeJoint];
+    
+    
+}
+
+- (void)releaseHook
+{
+    _catNode.zRotation = 0;
+    [self.physicsWorld removeJoint: _hookNode.physicsBody.joints.lastObject];
+    _isHooked = NO;
 }
 
 @end
